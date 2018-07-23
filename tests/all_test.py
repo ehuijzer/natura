@@ -15,7 +15,7 @@ for name in os.listdir("data/money"):
 
 default_money = Finder(converter=None)
 
-CURRENT_BAD = [u'.د.ب', u'US$', 'Lek', 'LEK']
+CURRENT_BAD = []
 
 
 def proove(x, y):
