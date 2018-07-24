@@ -319,6 +319,24 @@ def test_mix1(locale_name, money_string):
             generic_test(mons, money, [500, y_sim, 2], [50, y_sim2, 2])
 
 
+@pytest.mark.parametrize("locale_name", LOCALES)
+def test_text_amount(locale_name):
+    locale = LOCALES[locale_name]
+    money = Finder(locale_name, converter=None)
+    if locale in ['us','eur_min', 'us_min']:
+        money_string = "one million two hundred fifty-six thousand seven hundred twenty-one dollar"
+        generic_test(money_string, money, [1256721, 'USD', 2])
+    elif locale=='nl':
+        money_string = "een miljoen tweehonderdzesenvijftigduizend zevenhonderdeenentwintig dollar"
+        generic_test(money_string, money, [1256721, 'USD', 2])
+    elif locale=='de':
+        money_string = "eine Million zweihundertsechsundfünfzigtausendsiebenhunderteinundzwanzig Dollar"
+        generic_test(money_string, money, [1256721, 'USD', 2])
+    elif locale=='fr':
+        money_string = "un million deux cent cinquante-six mille sept cent vingt et un dollars"
+        generic_test(money_string, money, [1256721, 'USD', 2])
+
+
 def test_default_exchange():
     from_currency = "USD"
     to_currency = "EUR"
