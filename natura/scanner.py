@@ -18,11 +18,11 @@ class Scanner():
             (pipe(self.locale['currencies'], pre=r'', post=r's?\b'), self.currency_regex),
             (pipe(self.locale['abbrevs']), lambda y, x: Abbrev(x, y.match.span())),
             (self.symbols_to_regex(), self.symbol_regex),
-            (pipe(self.locale['units'], post=r'\w*\b'), self.units_regex),
+            (pipe(self.locale['keywords'], pre=r'', post=r'\b'), self.handle_keyword),
             (r'[., ]', None),
             (r'-?[0-9., ]*[0-9]+', self.to_number),
-            (pipe(self.locale['keywords'], pre=r'', post=r'\b'), self.handle_keyword),
             (r'-', None),
+            (pipe(self.locale['units'], post=r'\w*\b'), self.units_regex),
             (r'.', lambda y, x: Skipper(x, y.match.span())),
             (r'\n', lambda y, x: Skipper(x, y.match.span()))
         ], re.MULTILINE | re.IGNORECASE | re.UNICODE).scan
