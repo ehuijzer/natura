@@ -325,8 +325,6 @@ def test_text_amount(locale_name):
     if locale_name in ['us','eur_min', 'us_min']:
         money_string = "one million two hundred fifty-six thousand seven hundred twenty-one dollar"
         generic_test(money_string, money, [1256721, 'USD', 12])
-        money_string = "one million two hundred and fifty-six thousand seven hundred and twenty-one dollars"
-        generic_test(money_string, money, [1256721, 'USD', 14])
     elif locale_name=='nl':
         money_string = "een miljoen tweehonderdzesenvijftigduizend zevenhonderdeenentwintig dollar"
         generic_test(money_string, money, [1256721, 'USD', 5])
