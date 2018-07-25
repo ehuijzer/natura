@@ -563,10 +563,10 @@
       "shekel":[
          [
             "ILS",
-            false
+            true
          ]
       ],
-      "paʻanga":[
+      "pa'anga":[
          [
             "TOP",
             true
@@ -1383,7 +1383,7 @@
       "de shekeles":[
          [
             "ILS",
-            false
+            true
          ]
       ],
       "de pa'angas":[
