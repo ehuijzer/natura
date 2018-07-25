@@ -321,20 +321,26 @@ def test_mix1(locale_name, money_string):
 
 @pytest.mark.parametrize("locale_name", LOCALES)
 def test_text_amount(locale_name):
-    locale = LOCALES[locale_name]
     money = Finder(locale_name, converter=None)
-    if locale in ['us','eur_min', 'us_min']:
+    if locale_name in ['us','eur_min', 'us_min']:
         money_string = "one million two hundred fifty-six thousand seven hundred twenty-one dollar"
-        generic_test(money_string, money, [1256721, 'USD', 2])
-    elif locale=='nl':
+        generic_test(money_string, money, [1256721, 'USD', 12])
+        money_string = "one million two hundred and fifty-six thousand seven hundred and twenty-one dollars"
+        generic_test(money_string, money, [1256721, 'USD', 14])
+    elif locale_name=='nl':
         money_string = "een miljoen tweehonderdzesenvijftigduizend zevenhonderdeenentwintig dollar"
-        generic_test(money_string, money, [1256721, 'USD', 2])
-    elif locale=='de':
+        generic_test(money_string, money, [1256721, 'USD', 5])
+    elif locale_name=='de':
         money_string = "eine Million zweihundertsechsundfünfzigtausendsiebenhunderteinundzwanzig Dollar"
-        generic_test(money_string, money, [1256721, 'USD', 2])
-    elif locale=='fr':
+        generic_test(money_string, money, [1256721, 'USD', 4])
+    elif locale_name=='fr':
         money_string = "un million deux cent cinquante-six mille sept cent vingt et un dollars"
-        generic_test(money_string, money, [1256721, 'USD', 2])
+        generic_test(money_string, money, [1256721, 'USD', 13])
+    elif locale_name == 'es':
+        money_string = "un millón doscientos cincuenta y seis mil setecientos veintiuno de dólares"
+        generic_test(money_string, money, [1256721, 'USD', 10])
+    else:
+        assert False, "No test_text_amount for " + locale_name + ".json"
 
 
 def test_default_exchange():
